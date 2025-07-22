@@ -1,0 +1,36 @@
+package com.tvm.controller;
+
+import com.tvm.dto.VendorDTO;
+import com.tvm.service.VendorService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/admin/vendors")
+public class AdminController {
+    private final VendorService vendorService;
+
+    @Autowired
+    public AdminController(VendorService vendorService) {
+        this.vendorService = vendorService;
+    }
+
+    @GetMapping
+    public List<VendorDTO> getAll() {
+        return vendorService.getAllVendors();
+    }
+
+    @PutMapping("/{id}/approve")
+    public VendorDTO approve(@PathVariable Long id) {
+        return vendorService.approveVendor(id);
+    }
+
+    @PutMapping("/{id}/reject")
+    public VendorDTO reject(@PathVariable Long id) {
+        return vendorService.rejectVendor(id);
+    }
+}
+
+
