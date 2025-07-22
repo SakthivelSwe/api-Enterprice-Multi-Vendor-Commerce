@@ -1,5 +1,6 @@
 package com.tvm.controller;
 
+
 import com.tvm.dto.VendorDTO;
 import com.tvm.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/vendors")
 public class AdminController {
+
     private final VendorService vendorService;
 
     @Autowired
@@ -31,6 +33,10 @@ public class AdminController {
     public VendorDTO reject(@PathVariable Long id) {
         return vendorService.rejectVendor(id);
     }
+
+    @DeleteMapping("/{id}")
+    public String deleteVendor(@PathVariable Long id) {
+        vendorService.deleteVendor(id);
+        return "Vendor with ID " + id + " deleted successfully.";
+    }
 }
-
-
