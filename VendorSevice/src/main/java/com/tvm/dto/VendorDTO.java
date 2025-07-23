@@ -1,21 +1,13 @@
 package com.tvm.dto;
 
-import com.tvm.entity.VendorStatus;
+
 
 public class VendorDTO {
+
     private Long id;
-    private String vendorName;
+    private String name;
     private String email;
-    private VendorStatus status;
-
-    public VendorDTO() {}
-
-    public VendorDTO(Long id, String vendorName, String email, VendorStatus status) {
-        this.id = id;
-        this.vendorName = vendorName;
-        this.email = email;
-        this.status = status;
-    }
+    private boolean approved;
 
     public Long getId() {
         return id;
@@ -25,12 +17,12 @@ public class VendorDTO {
         this.id = id;
     }
 
-    public String getVendorName() {
-        return vendorName;
+    public String getName() {
+        return name;
     }
 
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -41,20 +33,16 @@ public class VendorDTO {
         this.email = email;
     }
 
-    public VendorStatus getStatus() {
-        return status;
+    public boolean isApproved() {
+        return approved;
     }
 
-    public void setStatus(VendorStatus status) {
-        this.status = status;
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
-    @Override
-    public String toString() {
-        return "VendorDTO{" +
-                "id=" + id +
-                ", vendorName='" + vendorName + '\'' +
-                ", email='" + email + '\'' +
-                ", status=" + status +
-                '}';
-    }
+
+
 }
+
+
+

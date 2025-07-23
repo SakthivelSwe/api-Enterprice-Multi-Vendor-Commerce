@@ -1,6 +1,8 @@
 package com.tvm.controller;
 
 
+
+
 import com.tvm.dto.VendorDTO;
 import com.tvm.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +14,8 @@ import java.util.List;
 @RequestMapping("/admin/vendors")
 public class AdminController {
 
-    private final VendorService vendorService;
-
     @Autowired
-    public AdminController(VendorService vendorService) {
-        this.vendorService = vendorService;
-    }
+    private VendorService vendorService;
 
     @GetMapping
     public List<VendorDTO> getAll() {

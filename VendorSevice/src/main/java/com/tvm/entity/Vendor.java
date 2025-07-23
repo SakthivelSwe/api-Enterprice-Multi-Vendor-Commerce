@@ -1,29 +1,22 @@
 package com.tvm.entity;
 
+
+
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "vendors")
 public class Vendor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String vendorName;
+    private String name;
+    @Column(unique = true)
     private String email;
     private String password;
-
-    @Enumerated(EnumType.STRING)
-    private VendorStatus status;
-
-    public Vendor() {}
-
-    public Vendor(Long id, String vendorName, String email, String password, VendorStatus status) {
-        this.id = id;
-        this.vendorName = vendorName;
-        this.email = email;
-        this.password = password;
-        this.status = status;
-    }
+    private boolean approved;
 
     public Long getId() {
         return id;
@@ -33,12 +26,12 @@ public class Vendor {
         this.id = id;
     }
 
-    public String getVendorName() {
-        return vendorName;
+    public String getName() {
+        return name;
     }
 
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -57,11 +50,12 @@ public class Vendor {
         this.password = password;
     }
 
-    public VendorStatus getStatus() {
-        return status;
+    public boolean isApproved() {
+        return approved;
     }
 
-    public void setStatus(VendorStatus status) {
-        this.status = status;
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
+
 }

@@ -1,100 +1,86 @@
 package com.tvm.service;
 
+
+
 import com.tvm.dto.VendorDTO;
 import com.tvm.entity.Vendor;
-import com.tvm.entity.VendorStatus;
+import com.tvm.mapper.VendorMapper;
 import com.tvm.repository.VendorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class VendorServiceImpl implements VendorService {
 
     @Autowired
-    private VendorRepository vendorRepo;
+    private VendorRepository vendorRepository;
+
+    @Autowired
+    private VendorMapper vendorMapper;
 
     @Override
     public VendorDTO registerVendor(Vendor vendor) {
-        vendor.setStatus(VendorStatus.APPROVED);
-        Vendor saved = vendorRepo.save(vendor);
-        return mapToDTO(saved);
+        vendor.setApproved(false); // Not approved by default
+        return vendorMapper.toDTO(vendorRepository.save(vendor));
     }
 
     @Override
     public VendorDTO login(String email, String password) {
-        Vendor vendor = vendorRepo.findByEmail(email)
+        Vendor vendor = vendorRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Vendor not found"));
-
         if (!vendor.getPassword().equals(password)) {
             throw new RuntimeException("Invalid password");
         }
+        return vendorMapper.toDTO(vendor);
+    }
 
-        return  mapToDTO(vendor);  // Ensure this doesn’t throw NullPointer
+    @Override
+    public VendorDTO updateProfile(Long id, Vendor vendorUpdate) {
+        Vendor vendor = vendorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Vendor not found"));
+        vendor.setName(vendorUpdate.getName());
+        vendor.setEmail(vendorUpdate.getEmail());
+        vendor.setPassword(vendorUpdate.getPassword());
+        return vendorMapper.toDTO(vendorRepository.save(vendor));
     }
 
 
-    @Override
-    public VendorDTO updateProfile(Long id, Vendor updatedVendor) {
-        Vendor vendor = vendorRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Vendor not found"));
+    public boolean isVendorApproved(Long id) {
+        return vendorRepository.findById(id)
+                .map(Vendor::isApproved)
+                .orElse(false);
+    }
 
-        vendor.setVendorName(updatedVendor.getVendorName());
-        vendor.setEmail(updatedVendor.getEmail());
-        Vendor saved = vendorRepo.save(vendor);
-        return mapToDTO(saved);
+    @Override
+    public VendorDTO approveVendor(Long id) {
+        Vendor vendor = vendorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Vendor not found"));
+        vendor.setApproved(true);
+        return vendorMapper.toDTO(vendorRepository.save(vendor));
+    }
+
+    @Override
+    public VendorDTO rejectVendor(Long id) {
+        Vendor vendor = vendorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Vendor not found"));
+        vendor.setApproved(false);
+        return vendorMapper.toDTO(vendorRepository.save(vendor));
     }
 
     @Override
     public List<VendorDTO> getAllVendors() {
-        return vendorRepo.findAll().stream()
-                .map(this::mapToDTO)
+        return vendorRepository.findAll().stream()
+                .map(vendorMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public VendorDTO approveVendor(Long vendorId) {
-        Vendor vendor = vendorRepo.findById(vendorId)
-                .orElseThrow(() -> new RuntimeException("Vendor not found"));
-
-        vendor.setStatus(VendorStatus.APPROVED);
-        return mapToDTO(vendorRepo.save(vendor));
-    }
-
-    @Override
-    public VendorDTO rejectVendor(Long vendorId) {
-        Vendor vendor = vendorRepo.findById(vendorId)
-                .orElseThrow(() -> new RuntimeException("Vendor not found"));
-
-        vendor.setStatus(VendorStatus.REJECTED);
-        return mapToDTO(vendorRepo.save(vendor));
-    }
-
-    @Override
-    public boolean isVendorApproved(Long vendorId) {
-        Vendor vendor = vendorRepo.findById(vendorId)
-                .orElseThrow(() -> new RuntimeException("Vendor not found"));
-
-        return vendor.getStatus() == VendorStatus.APPROVED;
-    }
-
-    @Override
     public void deleteVendor(Long id) {
-        Vendor vendor = vendorRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Vendor not found"));
-
-        vendorRepo.delete(vendor);
+        vendorRepository.deleteById(id);
     }
 
-    private VendorDTO mapToDTO(Vendor vendor) {
-        return new VendorDTO(
-                vendor.getId(),
-                vendor.getVendorName(),
-                vendor.getEmail(),
-                vendor.getStatus()
-        );
-    }
+
 }
