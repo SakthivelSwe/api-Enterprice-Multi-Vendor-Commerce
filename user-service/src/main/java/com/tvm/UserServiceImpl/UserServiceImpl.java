@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -155,6 +157,19 @@ public class UserServiceImpl implements UserService {
     public List<UserResponseDTO> getUsersByCity(String city) {
         List<User> users = userRepository.findByAddresses_CityIgnoreCase(city);
         return users.stream().map(UserMapper::toDto).toList();
+    }
+    @Override
+    public List<UserResponseDTO> getUsersByPostalCode(String postalcode){
+        List<User> users = userRepository.findByAddresses_PostalCode(postalcode);
+        return users.stream().map(UserMapper::toDto).toList();
+    }
+
+
+    @Override
+    public UserResponseDTO getUserByName(String name) {
+        User user = (User) userRepository.findByName(name)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
+        return UserMapper.toDto(user);
     }
 
 }

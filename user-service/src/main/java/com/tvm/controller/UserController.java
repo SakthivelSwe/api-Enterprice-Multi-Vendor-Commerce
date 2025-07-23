@@ -86,6 +86,16 @@ public class UserController {
                                                      @RequestBody UserPatchDTO patchDTO) {
         return ResponseEntity.ok(userService.patchUser(id, patchDTO));
     }
+    // 11.get User by Postalcode
+    @GetMapping("/address/{postalcode}")
+    public ResponseEntity<List<UserResponseDTO>> getUsersByPostalCode(@PathVariable String postalcode ) {
+        return ResponseEntity.ok(userService.getUsersByPostalCode(postalcode));
+    }
+    //12. get user by name
+    @GetMapping("/name/{name}")
+    public ResponseEntity<UserResponseDTO> getUserByName(@PathVariable String name) {
+        return ResponseEntity.ok(userService.getUserByName(name));
+    }
 
 
 }

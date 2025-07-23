@@ -22,5 +22,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByAddresses_CountryIgnoreCase(String country);
     List<User> findByAddresses_CityIgnoreCase(String city);
 
+    List<User> findByAddresses_PostalCode(String postalcode);
 
+    Optional<User> findByName(String name);
 }

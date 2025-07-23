@@ -29,5 +29,7 @@ public interface UserService {
     List<UserResponseDTO> getUsersByCity(String city);
 
 
+    List<UserResponseDTO> getUsersByPostalCode(String postalcode);
 
+    UserResponseDTO getUserByName(String name);
 }
