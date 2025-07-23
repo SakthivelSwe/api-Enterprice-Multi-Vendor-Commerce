@@ -37,4 +37,8 @@ public class VendorController {
     public boolean isApproved(@PathVariable Long id) {
         return vendorService.isVendorApproved(id);
     }
+    @PutMapping("/approve/{id}")
+    public VendorDTO approveVendor(@PathVariable Long id) {
+        return vendorService.approveVendor(id);
+    }
 }

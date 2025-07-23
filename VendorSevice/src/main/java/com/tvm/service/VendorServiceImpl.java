@@ -1,8 +1,11 @@
 package com.tvm.service;
 
+import com.tvm.dto.EmailRequest;
 import com.tvm.dto.VendorDTO;
+import com.tvm.entity.EmailType;
 import com.tvm.entity.Vendor;
 import com.tvm.entity.VendorStatus;
+import com.tvm.feign.NotificationClient;
 import com.tvm.repository.VendorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,8 @@ public class VendorServiceImpl implements VendorService {
 
     @Autowired
     private VendorRepository vendorRepo;
+    @Autowired
+    private NotificationClient notificationClient;
 
     @Override
     public VendorDTO registerVendor(Vendor vendor) {
@@ -61,7 +66,18 @@ public class VendorServiceImpl implements VendorService {
                 .orElseThrow(() -> new RuntimeException("Vendor not found"));
 
         vendor.setStatus(VendorStatus.APPROVED);
-        return mapToDTO(vendorRepo.save(vendor));
+        Vendor saved = vendorRepo.save(vendor);
+
+
+        EmailRequest email = new EmailRequest(
+                vendor.getEmail(),
+                "Vendor Approval Notification",
+                EmailType.VENDOR_APPROVAL,
+                new String[]{vendor.getVendorName(), "APPROVED"}
+        );
+        notificationClient.sendEmail(email);
+
+        return mapToDTO(saved);
     }
 
     @Override
