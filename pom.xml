@@ -21,6 +21,7 @@
 		<module>product-service</module>
 		<module>Eureka_Server</module>
 		<module>AUTH_SERVICES</module>
+		<module>Order_Service</module>
 
 	</modules>
 

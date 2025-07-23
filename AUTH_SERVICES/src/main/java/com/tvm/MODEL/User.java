@@ -15,6 +15,15 @@ public class User {
     private String username;
     private String password;
 
+    private String role; // USER, VENDOR
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public User() {
 
@@ -46,10 +55,10 @@ public class User {
         this.password = password;
     }
 
-    public User(Long id, String username, String password) {
+    public User(Long id, String username, String password, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 }
-
