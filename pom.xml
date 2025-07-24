@@ -20,7 +20,6 @@
 	<modules>
 		<module>payment-service</module>
 		<module>Eureka-Server</module>
-		<module>order-service</module>
 	</modules>
 
 	<dependencyManagement>
