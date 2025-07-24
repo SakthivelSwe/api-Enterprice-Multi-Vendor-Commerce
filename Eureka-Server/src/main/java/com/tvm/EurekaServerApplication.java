@@ -2,12 +2,12 @@ package com.tvm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
-public class ProductServiceApplication {
-
+@EnableEurekaServer
+public class EurekaServerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ProductServiceApplication.class, args);
+        SpringApplication.run(EurekaServerApplication.class, args);
     }
-
 }
