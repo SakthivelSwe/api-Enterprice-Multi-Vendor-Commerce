@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AUTH_SERVICE/AUTH_SERVICE.iml" filepath="$PROJECT_DIR$/AUTH_SERVICE/AUTH_SERVICE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Customer_Service.iml" filepath="$PROJECT_DIR$/Customer_Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ecb.iml" filepath="$PROJECT_DIR$/ecb.iml" />
+    </modules>
+  </component>
+</project>

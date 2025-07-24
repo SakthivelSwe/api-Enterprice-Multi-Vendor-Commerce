@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="auth-service" />
+        <module name="Order_Service" />
+        <module name="eureka-server" />
+        <module name="AUTH_SERVICE" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="auth-service (1)" target="1.5" />
+      <module name="AUTH_SERVICES" target="17" />
+      <module name="Eureka_server" target="24" />
+      <module name="Eureka_Server" target="17" />
+      <module name="EUREKASERVER" target="17" />
+      <module name="EUREKKA_SERVER" target="17" />
+      <module name="order_service" target="17" />
+      <module name="product-service" target="1.5" />
+      <module name="Product_Service" target="17" />
+      <module name="USER_SERVICE" target="17" />
+      <module name="User_service" target="17" />
+      <module name="VendorSevice" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AUTH_SERVICE" options="-parameters" />
+      <module name="AUTH_SERVICES" options="-parameters" />
+      <module name="EUREKASERVER" options="-parameters" />
+      <module name="EUREKKA_SERVER" options="-parameters" />
+      <module name="Eureka_Server" options="-parameters" />
+      <module name="Order_Service" options="-parameters" />
+      <module name="Product_Service" options="-parameters" />
+      <module name="USER_SERVICE" options="-parameters" />
+      <module name="User_service" options="-parameters" />
+      <module name="VendorSevice" options="-parameters" />
+      <module name="auth-service" options="-parameters" />
+      <module name="ecb" options="" />
+      <module name="eureka-server" options="-parameters" />
+      <module name="order_service" options="-parameters" />
+      <module name="product-service" options="" />
+    </option>
+  </component>
+</project>
