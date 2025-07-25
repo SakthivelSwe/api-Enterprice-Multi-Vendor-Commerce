@@ -18,8 +18,8 @@
 	</properties>
 
 	<modules>
-		<module>User-Service</module>
 		<module>Eureka_Server</module>
+		<module>User_Service</module>
 	</modules>
 
 	<dependencyManagement>
@@ -39,6 +39,9 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+
+
 		</dependencies>
 	</dependencyManagement>
 
