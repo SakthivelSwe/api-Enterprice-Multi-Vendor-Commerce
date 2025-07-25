@@ -37,5 +37,13 @@ public class CartController {
         Cart cart=cartService.deletecart(id, username);
         return ResponseEntity.ok(cart);
     }
+
+
+    //schedular api
+    @DeleteMapping("/cleanup")
+    public ResponseEntity<String> cleanOldCarts() {
+        cartService.deleteOldCartItems();
+        return ResponseEntity.ok("Old cart items deleted");
+    }
 }
 

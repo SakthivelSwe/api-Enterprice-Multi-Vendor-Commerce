@@ -6,12 +6,16 @@ import com.tvm.Exception.CartEmptyException;
 import com.tvm.Exception.ProductNotFoundException;
 import com.tvm.Model.Cart;
 import com.tvm.Model.CartItem;
+import com.tvm.Repository.CartItemrepo;
 import com.tvm.Repository.Cartrepo;
 import com.tvm.client.Productfleign;
 import com.tvm.client.Userfleign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,7 +24,7 @@ public class CartService {
     private Cartrepo cartRepo;
     @Autowired private Productfleign productClient;
     @Autowired private Userfleign userfleign;
-
+    @Autowired private CartItemrepo cartItemrepo;
     public Cart addToCart(String userId, Long productId, int quantity) {
         Productdto product = productClient.getProduct(productId);
 
@@ -85,5 +89,32 @@ public class CartService {
         // Save and return updated cart
         return cartRepo.save(cart);
     }
+
+
+    //schudular task
+    public void deleteOldCartItems() {
+        Date thresholdDate = new Date(System.currentTimeMillis() - 5L * 24 * 60 * 60 * 1000);
+
+        List<Cart> carts = cartRepo.findAll();
+
+        for (Cart cart : carts) {
+            // Remove items older than 5 days
+            cart.getItems().removeIf(item ->
+                    item.getCreatedAt().before(thresholdDate)
+            );
+
+            // Recalculate total
+            cart.setTotalPrice(
+                    cart.getItems().stream().mapToDouble(CartItem::getPrice).sum()
+            );
+
+            // Save updated cart
+            cartRepo.save(cart);
+        }
+    }
+
+
+
+
 
 }

@@ -3,7 +3,6 @@ com\tvm\Exception\CartEmptyException.class
 com\tvm\Model\Cart.class
 com\tvm\Model\Order.class
 com\tvm\Exception\OrderNotFoundException.class
-com\tvm\Order_Serice.class
 com\tvm\Controller\Controller.class
 com\tvm\client\Userfleign.class
 com\tvm\Repository\Orderrepo.class
@@ -12,6 +11,7 @@ com\tvm\Repository\Cartrepo.class
 com\tvm\DTO\Orderdto.class
 com\tvm\Exception\ProductNotFoundException.class
 com\tvm\Security_config\JwtUtils.class
+com\tvm\Order_Service.class
 com\tvm\Repository\CartItemrepo.class
 com\tvm\Service\CartService.class
 com\tvm\Controller\CartController.class

@@ -2,6 +2,8 @@ package com.tvm.Model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 public class CartItem {
     @Id
@@ -11,6 +13,20 @@ public class CartItem {
     private Long productId; // from product service
     private int quantity;
     private double price;
+    @Temporal(TemporalType.TIMESTAMP)
+
+    private Date createdAt;
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Date();
+    }
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
@@ -66,4 +82,6 @@ public class CartItem {
     public CartItem(){
 
     }
+
+
 }
