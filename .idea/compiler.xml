@@ -8,19 +8,23 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="auth-service" />
-        <module name="Order_Service" />
+        <module name="AUTH_SERVICES" />
+        <module name="Schedular_Service" />
+        <module name="User_Service" />
+        <module name="Payment_service" />
+        <module name="OrderService" />
         <module name="eureka-server" />
         <module name="AUTH_SERVICE" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="auth-service (1)" target="1.5" />
-      <module name="AUTH_SERVICES" target="17" />
       <module name="Eureka_server" target="24" />
       <module name="Eureka_Server" target="17" />
       <module name="EUREKASERVER" target="17" />
       <module name="EUREKKA_SERVER" target="17" />
       <module name="order_service" target="17" />
+      <module name="Payment-service" target="17" />
       <module name="product-service" target="1.5" />
       <module name="Product_Service" target="17" />
       <module name="USER_SERVICE" target="17" />
@@ -35,13 +39,17 @@
       <module name="EUREKASERVER" options="-parameters" />
       <module name="EUREKKA_SERVER" options="-parameters" />
       <module name="Eureka_Server" options="-parameters" />
-      <module name="Order_Service" options="-parameters" />
+      <module name="OrderService" options="-parameters" />
+      <module name="Payment-service" options="-parameters" />
+      <module name="Payment_service" options="-parameters" />
       <module name="Product_Service" options="-parameters" />
+      <module name="Schedular_Service" options="-parameters" />
       <module name="USER_SERVICE" options="-parameters" />
+      <module name="User_Service" options="-parameters" />
       <module name="User_service" options="-parameters" />
       <module name="VendorSevice" options="-parameters" />
       <module name="auth-service" options="-parameters" />
-      <module name="ecb" options="" />
+      <module name="ecb" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="order_service" options="-parameters" />
       <module name="product-service" options="" />

@@ -11,11 +11,11 @@ com\tvm\Repository\Cartrepo.class
 com\tvm\DTO\Orderdto.class
 com\tvm\Exception\ProductNotFoundException.class
 com\tvm\Security_config\JwtUtils.class
-com\tvm\Order_Service.class
 com\tvm\Repository\CartItemrepo.class
 com\tvm\Service\CartService.class
 com\tvm\Controller\CartController.class
 com\tvm\Exception\GlobalExceptionHandler.class
+com\tvm\OrderServiceApplication.class
 com\tvm\DTO\UserDTO.class
 com\tvm\Service\OrderService.class
 com\tvm\DTO\Productdto.class

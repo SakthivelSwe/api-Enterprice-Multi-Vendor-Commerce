@@ -25,12 +25,21 @@ public class ReportSchedular {
 
     @Autowired
     private JavaMailSender javaMailSender;
-    @Scheduled(cron = "0 0 9 * * ?")
-    public void sendDailyReport() {
+//    @Scheduled(cron = "0 0 9 * * ?")
+@Scheduled(cron = "0 * * * * ?")
+public void sendDailyReport() {
+    try {
+        System.out.println("Calling payments Service cleanup API...");
+
         BigDecimal dailySales = dailyreport.getdailyamount();
-        String adminEmail ="ramudukumar19@gmai.com";
+        String adminEmail = "ramudukumar19@gmail.com"; // ✅ corrected
         sendEmail(adminEmail, "Daily Sales Report", "Total Daily Sales: ₹" + dailySales);
+    } catch (Exception e) {
+        System.err.println("Cart cleanup failed: " + e.getMessage());
+        e.printStackTrace();
     }
+}
+
 
     // Send weekly every Monday at 10 AM
     @Scheduled(cron = "0 0 10 ? * MON")
@@ -41,21 +50,33 @@ public class ReportSchedular {
     }
 
     private void sendEmail(String to, String subject, String text) {
+        if (to == null || !to.contains("@")) {
+            System.err.println("Invalid recipient email: " + to);
+            return;
+        }
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo();
+        msg.setTo(to);
         msg.setSubject(subject);
         msg.setText(text);
         javaMailSender.send(msg);
     }
 
-    @Scheduled(cron = "0 0 2 * * ?") // Every day at 2 AM
-    public void cleanupCarts() {
+
+    //    @Scheduled(cron = "0 * * * * ?") // every minute
+@Scheduled(cron = "0 0 2 * * ?") // Every day at 2 AM
+
+public void cleanupCarts() {
+        System.out.println("⏰ Scheduler triggered at: " + java.time.LocalDateTime.now());
+
         try {
-            orderclient.cleanupOldCarts();
-            System.out.println("Cart cleanup triggered successfully");
+            System.out.println("Calling Order Service cleanup API...");
+            orderclient.cleanupOldCarts();  // Feign client method
+            System.out.println("Cart cleanup triggered successfully.");
         } catch (Exception e) {
             System.err.println("Cart cleanup failed: " + e.getMessage());
+            e.printStackTrace();  // Optional: for full stack trace
         }
     }
+
 }
 

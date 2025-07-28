@@ -1,8 +1,6 @@
 package com.tvm.Model;
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
-
 import java.util.ArrayList;
 import java.util.List;
 

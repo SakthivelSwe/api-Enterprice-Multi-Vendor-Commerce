@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.math.BigDecimal;
 
-@FeignClient(name="payment-services")
+@FeignClient(name="PAYMENT-SERVICE")
 public interface Dailyreport {
-    @GetMapping("/api/payments/daily-amount")
+    @GetMapping("/api/payments/total/daily")
     BigDecimal getdailyamount();
 
 
