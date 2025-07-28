@@ -1,13 +1,12 @@
 package com.tvm.ProductDto;
 
-public class productdto
-{
+public class productdto {
     private String name;
-    private  String category;
-    private  Double price;
+    private String category;
+    private Double price;
     private Integer stock;
-    private long vendorId;
-    private String vendorname;
+    private long vendorid;
+
 
     public String getName() {
         return name;
@@ -41,19 +40,12 @@ public class productdto
         this.stock = stock;
     }
 
-    public long getVendorId() {
-        return vendorId;
+    public long getVendorid() {
+        return vendorid;
     }
 
-    public void setVendorId(long vendorId) {
-        this.vendorId = vendorId;
+    public void setVendorid(long vendorid) {
+        this.vendorid = vendorid;
     }
 
-    public String getVendorname() {
-        return vendorname;
-    }
-
-    public void setVendorname(String vendorname) {
-        this.vendorname = vendorname;
-    }
 }

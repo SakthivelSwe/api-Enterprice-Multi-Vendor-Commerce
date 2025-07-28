@@ -12,10 +12,10 @@ public class Product
     private String category;
     private Double price;
     private Integer stock;
+    private long vendorid;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "vendor_id")
-    private Vendor vendor;
+
+
 
 
     public long getId()
@@ -63,15 +63,26 @@ public class Product
         this.stock = stock;
     }
 
-    public Vendor getVendor()
-    {
-        return vendor;
-    }
-    public void setVendor(Vendor vendor)
-    {
-        this.vendor = vendor;
+    public long getVendorid() {
+        return vendorid;
     }
 
-    public Product() {}
+    public void setVendorid(long vendorid) {
+        this.vendorid = vendorid;
+    }
+
+    public Product() {
+
+    }
+
+    public Product(long id, String name, String category, Double price, Integer stock, long vendorid) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.price = price;
+        this.stock = stock;
+        this.vendorid = vendorid;
+
+    }
 }
 
