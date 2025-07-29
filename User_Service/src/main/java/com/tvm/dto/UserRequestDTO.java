@@ -11,6 +11,24 @@ public class UserRequestDTO {
     @NotBlank(message = "Name is required")
     private String name;
 
+    @Email(message = "Invalid email format")
+    private String email;
+
+//    @Size(min = 8, message = "Password must be at least 6 characters")
+//    private String password;
+
+    private String phone;
+
+    private String gender;
+
+    private List<AddressDTO> addresses;
+
+    public UserRequestDTO()
+    {
+
+    }
+
+
     public String getName() {
         return name;
     }
@@ -27,13 +45,13 @@ public class UserRequestDTO {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
 
     public String getPhone() {
         return phone;
@@ -59,15 +77,5 @@ public class UserRequestDTO {
         this.addresses = addresses;
     }
 
-    @Email(message = "Invalid email format")
-    private String email;
 
-    @Size(min = 8, message = "Password must be at least 6 characters")
-    private String password;
-
-    private String phone;
-
-    private String gender;
-
-    private List<AddressDTO> addresses;
 }

@@ -1,5 +1,6 @@
 package com.tvm.service;
 
+import com.tvm.dto.UserIdNameDTO;
 import com.tvm.dto.UserPatchDTO;
 import com.tvm.dto.UserRequestDTO;
 import com.tvm.dto.UserResponseDTO;
@@ -30,6 +31,8 @@ public interface UserService {
 
 
     List<UserResponseDTO> getUsersByPostalCode(String postalcode);
-
     UserResponseDTO getUserByName(String name);
+    UserIdNameDTO getUserIdAndNameByName(String name);
+
+
 }

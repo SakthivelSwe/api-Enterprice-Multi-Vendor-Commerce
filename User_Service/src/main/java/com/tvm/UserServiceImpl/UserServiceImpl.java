@@ -1,9 +1,6 @@
 package com.tvm.UserServiceImpl;
 
-import com.tvm.dto.AddressPatchDTO;
-import com.tvm.dto.UserPatchDTO;
-import com.tvm.dto.UserRequestDTO;
-import com.tvm.dto.UserResponseDTO;
+import com.tvm.dto.*;
 import com.tvm.entity.Address;
 import com.tvm.entity.User;
 //import com.tvm.mapper.UserMapper;
@@ -25,7 +22,7 @@ import java.util.stream.Collectors;
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class  UserServiceImpl implements UserService {
     @Autowired
     private  UserRepository userRepository;
     @Autowired
@@ -178,12 +175,20 @@ public class UserServiceImpl implements UserService {
         return users.stream().map(UserMapper::toDto).toList();
     }
 
-
     @Override
     public UserResponseDTO getUserByName(String name) {
-        User user = (User) userRepository.findByName(name)
-                .orElseThrow(() -> new RuntimeException("User not found with ID: " + id));
+        User user = userRepository.findByName(name)
+                .orElseThrow(() -> new RuntimeException("User not found with this name : " + name));
         return UserMapper.toDto(user);
     }
+
+    @Override
+    public UserIdNameDTO getUserIdAndNameByName(String name) {
+        User user = userRepository.findByName(name)
+                .orElseThrow(() -> new RuntimeException("User not found with this name: " + name));
+        return new UserIdNameDTO(user.getId(), user.getName());
+    }
+
+
 
 }

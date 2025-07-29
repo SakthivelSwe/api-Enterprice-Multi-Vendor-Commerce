@@ -6,6 +6,9 @@ public class AddressDTO {
     private String country;
     private String state;
     private String city;
+    private String village;
+    private String postalCode;
+    private String landmark;
     public AddressDTO()
     {
 
@@ -77,9 +80,7 @@ public class AddressDTO {
         this.landmark = landmark;
     }
 
-    private String village;
-    private String postalCode;
-    private String landmark;
+
 
 
 }

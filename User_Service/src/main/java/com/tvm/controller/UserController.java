@@ -3,6 +3,7 @@
 package com.tvm.controller;
 
 import com.tvm.Config.Jwtutil;
+import com.tvm.dto.UserIdNameDTO;
 import com.tvm.dto.UserPatchDTO;
 import com.tvm.dto.UserRequestDTO;
 import com.tvm.dto.UserResponseDTO;
@@ -114,11 +115,19 @@ public class UserController {
     public ResponseEntity<List<UserResponseDTO>> getUsersByPostalCode(@PathVariable String postalcode ) {
         return ResponseEntity.ok(userService.getUsersByPostalCode(postalcode));
     }
-    //12. get user by name
-    @GetMapping("/name/{name}")
-    public ResponseEntity<UserResponseDTO> getUserByName(@PathVariable String name) {
+    // 1. Get full user details by name
+    @GetMapping("/name/full/{name}")
+    public ResponseEntity<UserResponseDTO> getUserByNameFull(@PathVariable String name) {
         return ResponseEntity.ok(userService.getUserByName(name));
     }
+
+    // 2. Get only userId and name
+    @GetMapping("/name/{name}")
+    public ResponseEntity<UserIdNameDTO> getUserByName(@PathVariable String name) {
+        return ResponseEntity.ok(userService.getUserIdAndNameByName(name));
+    }
+
+
 
 
 }

@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableJpaRepositories(basePackages = "com.tvm.userRepository")  // or "com.tvm.repository" after rename
+@EnableJpaRepositories(basePackages = "com.tvm.userRepository")
 @EnableFeignClients
 public class UserApplication {
     public static void main(String[] args) {

@@ -1,7 +1,7 @@
 package com.tvm.entity;
 
 import jakarta.persistence.*;
-
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,22 +9,28 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Email(message = "Invalid email format")
+    @NotBlank(message = "Email is required")
     @Column(nullable = false, unique = true)
     private String email;
 
+    @NotBlank(message = "Name is required")
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @NotBlank(message = "Phone number is required")
+    @Size(min = 10, max = 10, message = "Phone number must be exactly 10 digits")
+    @Pattern(regexp = "\\d{10}", message = "Phone number must contain only digits")
+    @Column(nullable = false, length = 10)
     private String phone;
 
+//    @NotBlank(message = "Password is required")
 //    @Column(nullable = false)
 //    private String password;
 
@@ -45,10 +51,10 @@ public class User {
     public void onUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
-    public User()
-    {
 
-    }
+    public User() {}
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
