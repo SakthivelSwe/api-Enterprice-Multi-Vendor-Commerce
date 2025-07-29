@@ -15,6 +15,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>product-service</module>
+		<module>Notification-Service</module>
 	</modules>
 	<url/>
 	<licenses>
