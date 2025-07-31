@@ -115,13 +115,13 @@ public class UserController {
     public ResponseEntity<List<UserResponseDTO>> getUsersByPostalCode(@PathVariable String postalcode ) {
         return ResponseEntity.ok(userService.getUsersByPostalCode(postalcode));
     }
-    // 1. Get full user details by name
+    // 12. Get full user details by name
     @GetMapping("/name/full/{name}")
     public ResponseEntity<UserResponseDTO> getUserByNameFull(@PathVariable String name) {
         return ResponseEntity.ok(userService.getUserByName(name));
     }
 
-    // 2. Get only userId and name
+    // 13. Get only userId and name
     @GetMapping("/name/{name}")
     public ResponseEntity<UserIdNameDTO> getUserByName(@PathVariable String name) {
         return ResponseEntity.ok(userService.getUserIdAndNameByName(name));
