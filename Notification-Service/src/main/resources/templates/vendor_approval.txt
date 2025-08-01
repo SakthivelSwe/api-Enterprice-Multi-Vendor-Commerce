@@ -1,0 +1,5 @@
+Hello {{name}},
+
+Your vendor account has been {{status}}.
+
+Thank you.
